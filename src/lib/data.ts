@@ -84,5 +84,5 @@ export const portfolioData: PortfolioData = {
       { name: "LinkedIn", url: "https://linkedin.com/in/adrian-oviedo-moreno" },
     ],
   },
-  cvUrl: "#",
+  cvUrl: "https://storage.googleapis.com/maker-studio-5813a.appspot.com/assets/Adrian_Oviedo_Moreno_CV.pdf",
 };
