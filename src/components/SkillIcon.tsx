@@ -15,6 +15,15 @@ import { FirebaseLogo } from "./icons/FirebaseLogo";
 import { NextJsLogo } from "./icons/NextJsLogo";
 import { PostgreSqlLogo } from "./icons/PostgreSqlLogo";
 import { VercelLogo } from "./icons/VercelLogo";
+import { PythonLogo } from "./icons/PythonLogo";
+import { CppLogo } from "./icons/CppLogo";
+import { JavaLogo } from "./icons/JavaLogo";
+import { TypeScriptLogo } from "./icons/TypeScriptLogo";
+import { DjangoLogo } from "./icons/DjangoLogo";
+import { ReactLogo } from "./icons/ReactLogo";
+import { MySqlLogo } from "./icons/MySqlLogo";
+import { TailwindCssLogo } from "./icons/TailwindCssLogo";
+import { HuggingFaceLogo } from "./icons/HuggingFaceLogo";
 
 interface SkillIconProps extends LucideProps {
   name: string;
@@ -26,31 +35,39 @@ export const SkillIcon = ({ name, ...props }: SkillIconProps) => {
   switch (lowerCaseName) {
     // Languages
     case "javascript":
+      return <Code {...props} />;
     case "typescript":
+      return <TypeScriptLogo {...props} />;
     case "python":
+      return <PythonLogo {...props} />;
     case "html5":
     case "css3":
-    case "c++":
-    case "java":
     case "html/css":
       return <Code {...props} />;
+    case "c++":
+      return <CppLogo {...props} />;
+    case "java":
+      return <JavaLogo {...props} />;
     case "sql":
       return <Database {...props} />;
 
     // Frameworks
     case "react":
+      return <ReactLogo {...props} />;
     case "node.js":
     case "express":
-    case "django":
       return <Code {...props} />;
+    case "django":
+        return <DjangoLogo {...props} />;
     case "next.js":
       return <NextJsLogo {...props} />;
 
     // Databases
     case "mongodb":
     case "database":
-    case "mysql":
       return <Database {...props} />;
+    case "mysql":
+      return <MySqlLogo {...props} />;
     case "postgresql":
       return <PostgreSqlLogo {...props} />;
     case "firebase":
@@ -75,11 +92,13 @@ export const SkillIcon = ({ name, ...props }: SkillIconProps) => {
     case "ai":
     case "apis de ia generativa":
     case "nltk":
-    case "hugging face":
       return <BrainCircuit {...props} />;
+    case "hugging face":
+        return <HuggingFaceLogo {...props} />;
     
     // UI & Design
     case "tailwind css":
+      return <TailwindCssLogo {...props} />;
     case "shadcn/ui":
       return <Palette {...props} />;
 
