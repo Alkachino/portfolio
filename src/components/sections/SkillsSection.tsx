@@ -13,7 +13,7 @@ const SkillsSection = () => {
           Mis Herramientas
         </h2>
         <Tabs defaultValue={skillCategories[0].name} className="w-full">
-          <TabsList className="grid w-full max-w-md mx-auto grid-cols-3 sm:grid-cols-5 mb-8">
+          <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-3 sm:grid-cols-6 mb-8">
             {skillCategories.map((category) => (
               <TabsTrigger key={category.name} value={category.name}>
                 {category.name}
@@ -23,7 +23,7 @@ const SkillsSection = () => {
 
           {skillCategories.map((category) => (
             <TabsContent key={category.name} value={category.name}>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
                 {category.skills.map((skill) => (
                   <Card key={skill} className="bg-secondary/50 hover:bg-secondary transition-colors">
                     <CardContent className="flex flex-col items-center justify-center p-6 gap-3">

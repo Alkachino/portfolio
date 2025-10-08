@@ -8,6 +8,7 @@ import {
   Github,
   Layers3,
   PenTool,
+  Palette,
 } from "lucide-react";
 import type { LucideProps } from "lucide-react";
 import { FirebaseLogo } from "./icons/FirebaseLogo";
@@ -76,6 +77,11 @@ export const SkillIcon = ({ name, ...props }: SkillIconProps) => {
     case "nltk":
       return <BrainCircuit {...props} />;
     
+    // UI & Design
+    case "tailwind css":
+    case "shadcn/ui":
+      return <Palette {...props} />;
+
     // Other
     case "d3.js":
       return <PenTool {...props}/>;

@@ -17,15 +17,15 @@ export const portfolioData: PortfolioData = {
   skills: [
     {
       name: "Lenguajes",
-      skills: ["Python", "C++", "Java", "SQL"],
+      skills: ["Python", "C++", "Java", "SQL", "TypeScript"],
     },
     {
       name: "Frameworks",
-      skills: ["Django"],
+      skills: ["Django", "Next.js", "React"],
     },
     {
       name: "Bases de Datos",
-      skills: ["PostgreSQL", "MySQL"],
+      skills: ["PostgreSQL", "MySQL", "Firebase"],
     },
     {
       name: "DevOps",
@@ -33,8 +33,12 @@ export const portfolioData: PortfolioData = {
     },
     {
       name: "I.A.",
-      skills: ["APIs de IA Generativa", "NLTK"],
+      skills: ["APIs de IA Generativa", "NLTK", "Genkit"],
     },
+    {
+      name: "Portfolio Web",
+      skills: ["Next.js", "React", "TypeScript", "Tailwind CSS", "ShadCN/UI", "Genkit"],
+    }
   ],
   projects: [
     {
