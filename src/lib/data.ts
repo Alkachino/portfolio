@@ -42,8 +42,8 @@ export const portfolioData: PortfolioData = {
   ],
   projects: [
     {
-      title: "Chatbot de Buenas Prácticas para General Motors",
-      description: "Lideré el desarrollo de un prototipo funcional de chatbot diseñado para resolver consultas técnicas de los trabajadores, mejorando el acceso a la información. Implementé toda la lógica de procesamiento de lenguaje natural en Python con la librería NLTK y desarrollé la interfaz de usuario con HTML, CSS y JavaScript. Este proyecto fue una excelente oportunidad para aplicar un ciclo de desarrollo completo en un contexto universitario-industrial.",
+      title: "Chatbot de Soporte Técnico para General Motors",
+      description: "Proyecto desarrollado bajo un convenio entre la UAEMex y General Motors. Asumí el liderazgo completo del ciclo de desarrollo, diseñando y programando la solución de forma autónoma. Implementé la lógica de procesamiento de lenguaje natural con Python y NLTK, y creé una interfaz de usuario interactiva con HTML, CSS y JavaScript. Entregué un prototipo funcional que demostró la viabilidad de un asistente virtual para resolver consultas técnicas, fortaleciendo mis habilidades en desarrollo full-stack, autogestión y liderazgo.",
       technologies: ["Python", "NLTK", "JavaScript", "HTML/CSS", "Git"],
       githubUrl: "https://github.com/Alkachino/Chatbot-GM",
       liveUrl: undefined,
