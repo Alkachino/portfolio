@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import { useState, useEffect, useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { Wand2, Copy, Check, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -36,7 +36,7 @@ const formId = "ai-improver-form";
 const AiContentImprover = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { toast } = useToast();
-  const [state, formAction] = useFormState(improveContentAction, initialState);
+  const [state, formAction] = useActionState(improveContentAction, initialState);
   const [isCopied, setIsCopied] = useState(false);
   const [formKey, setFormKey] = useState(Date.now());
 
