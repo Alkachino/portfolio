@@ -33,7 +33,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       name: "I.A.",
-      skills: ["APIs de IA Generativa", "NLTK", "Genkit"],
+      skills: ["APIs de IA Generativa", "NLTK", "Genkit", "Hugging Face"],
     },
     {
       name: "Portfolio Web",
@@ -43,8 +43,8 @@ export const portfolioData: PortfolioData = {
   projects: [
     {
       title: "Chatbot de Soporte Técnico para General Motors",
-      description: "Proyecto desarrollado bajo un convenio entre la UAEMex y General Motors. Asumí el liderazgo completo del ciclo de desarrollo, diseñando y programando la solución de forma autónoma. Implementé la lógica de procesamiento de lenguaje natural con Python y NLTK, y creé una interfaz de usuario interactiva con HTML, CSS y JavaScript. Entregué un prototipo funcional que demostró la viabilidad de un asistente virtual para resolver consultas técnicas, fortaleciendo mis habilidades en desarrollo full-stack, autogestión y liderazgo.",
-      technologies: ["Python", "NLTK", "JavaScript", "HTML/CSS", "Git"],
+      description: "Proyecto clave desarrollado bajo un convenio entre la UAEMex y General Motors. Lideré de forma autónoma el ciclo de desarrollo, implementando la lógica de procesamiento de lenguaje natural con Python y NLTK. Integré modelos de Hugging Face para potenciar las capacidades de comprensión y respuesta, lo que demuestra mi familiaridad con el uso de LLMs. Creé una interfaz de usuario interactiva y entregué un prototipo funcional que validó la viabilidad de un asistente virtual para consultas técnicas, fortaleciendo mis habilidades en desarrollo full-stack, autogestión y liderazgo.",
+      technologies: ["Python", "NLTK", "Hugging Face", "JavaScript", "HTML/CSS", "Git"],
       githubUrl: "https://github.com/Alkachino/Chatbot-GM",
       liveUrl: undefined,
       image: placeholderImages.get("project-1")!,

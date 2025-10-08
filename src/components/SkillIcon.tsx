@@ -75,6 +75,7 @@ export const SkillIcon = ({ name, ...props }: SkillIconProps) => {
     case "ai":
     case "apis de ia generativa":
     case "nltk":
+    case "hugging face":
       return <BrainCircuit {...props} />;
     
     // UI & Design
