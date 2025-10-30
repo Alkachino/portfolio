@@ -30,7 +30,7 @@ const Header = () => {
         </nav>
         <div className="flex items-center space-x-2">
             <Button asChild>
-                <a href={portfolioData.cvUrl}>Descargar CV</a>
+                <a href="#contact">Hablemos</a>
             </Button>
         </div>
       </div>

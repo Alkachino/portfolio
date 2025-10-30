@@ -37,9 +37,6 @@ const Footer = () => {
             </a>
           </Button>
         </div>
-        <Button size="lg" asChild className="mb-8">
-            <a href={portfolioData.cvUrl}>Descargar mi CV</a>
-        </Button>
         <p className="text-sm text-muted-foreground">
           &copy; {new Date().getFullYear()} {portfolioData.name}. All Rights Reserved.
         </p>

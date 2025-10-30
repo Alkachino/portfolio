@@ -55,5 +55,4 @@ export type PortfolioData = {
     email: string;
     socials: Omit<SocialLink, 'icon'>[];
   };
-  cvUrl: string;
 };
