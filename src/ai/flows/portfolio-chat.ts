@@ -92,11 +92,11 @@ const prompt = ai.definePrompt({
 ${portfolioContext}`,
   prompt: `Historial de la conversación:
 {{#each history}}
-  {{#if (eq role 'user')}}
-    Usuario: {{{content}}}
-  {{else}}
-    Asistente: {{{content}}}
-  {{/if}}
+{{#if (eq this.role "user")}}
+Usuario: {{{this.content}}}
+{{else}}
+Asistente: {{{this.content}}}
+{{/if}}
 {{/each}}
 
 Pregunta actual del usuario:
@@ -113,6 +113,12 @@ const portfolioChatFlow = ai.defineFlow(
     outputSchema: PortfolioChatOutputSchema,
   },
   async (input) => {
+    // Registrar un 'helper' para la igualdad en Handlebars
+    const Handlebars = (await import('handlebars')).default;
+    Handlebars.registerHelper('eq', function (a, b) {
+      return a === b;
+    });
+
     const { output } = await prompt(input);
     return output!;
   }
