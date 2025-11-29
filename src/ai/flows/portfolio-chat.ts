@@ -10,6 +10,12 @@
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
 import { portfolioData } from '@/lib/data';
+import Handlebars from 'handlebars';
+
+// Registrar el 'helper' de forma global para que esté disponible al definir el prompt.
+Handlebars.registerHelper('eq', function (a, b) {
+  return a === b;
+});
 
 const ChatMessageSchema = z.object({
   role: z.enum(['user', 'model']),
@@ -113,12 +119,6 @@ const portfolioChatFlow = ai.defineFlow(
     outputSchema: PortfolioChatOutputSchema,
   },
   async (input) => {
-    // Registrar un 'helper' para la igualdad en Handlebars
-    const Handlebars = (await import('handlebars')).default;
-    Handlebars.registerHelper('eq', function (a, b) {
-      return a === b;
-    });
-
     const { output } = await prompt(input);
     return output!;
   }
