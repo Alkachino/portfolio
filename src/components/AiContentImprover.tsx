@@ -72,8 +72,9 @@ const AiContentImprover = () => {
     <>
       <Button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg z-50"
+        className="h-14 w-14 rounded-full shadow-lg"
         size="icon"
+        aria-label="Mejorar Contenido con IA"
       >
         <Wand2 className="h-6 w-6" />
         <span className="sr-only">Mejorar Contenido con IA</span>

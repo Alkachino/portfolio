@@ -6,6 +6,7 @@ import ProjectsSection from "@/components/sections/ProjectsSection";
 import CertificationsSection from "@/components/sections/CertificationsSection";
 import Footer from "@/components/layout/Footer";
 import AiContentImprover from "@/components/AiContentImprover";
+import PortfolioChatbot from "@/components/PortfolioChatbot";
 
 export default function Home() {
   return (
@@ -19,7 +20,10 @@ export default function Home() {
         <CertificationsSection />
       </main>
       <Footer />
-      <AiContentImprover />
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-4">
+        <PortfolioChatbot />
+        <AiContentImprover />
+      </div>
     </div>
   );
 }
