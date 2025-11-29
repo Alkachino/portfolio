@@ -20,17 +20,12 @@ export async function improveContentAction(input: ImproveContentWithAIInput) {
   }
 }
 
-export async function portfolioChatAction(input: PortfolioChatInput | FormData) {
-  let chatInput: PortfolioChatInput;
-
-  if (input instanceof FormData) {
-    const question = input.get('question') as string;
-    const historyString = input.get('history') as string | null;
-    const history = historyString ? JSON.parse(historyString) : [];
-    chatInput = { question, history };
-  } else {
-    chatInput = input;
-  }
+export async function portfolioChatAction(prevState: any, formData: FormData) {
+  const question = formData.get('question') as string;
+  const historyString = formData.get('history') as string | null;
+  const history = historyString ? JSON.parse(historyString) : [];
+  
+  const chatInput: PortfolioChatInput = { question, history };
 
   try {
     const result = await portfolioChat(chatInput);
