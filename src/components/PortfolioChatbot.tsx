@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { Bot, Send, Loader2, User, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -29,25 +30,23 @@ type State = {
 } | null;
 
 const initialState: State = null;
+const formId = "portfolio-chat-form";
 
 const PortfolioChatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
-  const [input, setInput] = useState("");
   const [state, formAction] = useActionState(portfolioChatAction, initialState);
-  const [isPending, setIsPending] = useState(false);
+  const [formKey, setFormKey] = useState(Date.now());
   const scrollAreaRef = useRef<HTMLDivElement>(null);
-  const formRef = useRef<HTMLFormElement>(null);
-
-
+  
   useEffect(() => {
     if (state) {
-      setIsPending(false);
       if (state.success && state.data) {
         setMessages((prev) => [...prev, { role: "model", content: state.data.answer }]);
       } else if (state.error) {
         setMessages((prev) => [...prev, { role: "model", content: `Lo siento, ocurrió un error: ${state.error}` }]);
       }
+      setFormKey(Date.now()); // Reset form after submission
     }
   }, [state]);
 
@@ -59,22 +58,14 @@ const PortfolioChatbot = () => {
       });
     }
   }, [messages]);
+  
+  const handleFormAction = (formData: FormData) => {
+    const question = formData.get('question') as string;
+    if (!question.trim()) return;
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!input.trim() || isPending) return;
-
-    const currentMessages = [...messages, { role: 'user', content: input }];
-    setMessages(currentMessages);
-
-    const formData = new FormData(formRef.current!);
-    // Manually set history since it's state, not a form input
-    formData.set('history', JSON.stringify(messages));
-    
-    setIsPending(true);
+    setMessages(prev => [...prev, { role: 'user', content: question }]);
     formAction(formData);
-    setInput("");
-  };
+  }
 
   const handleOpenChange = (open: boolean) => {
     setIsOpen(open);
@@ -138,33 +129,20 @@ const PortfolioChatbot = () => {
                   )}
                 </div>
               ))}
-               {isPending && (
-                <div className="flex items-start gap-3 justify-start">
-                  <Avatar className="h-8 w-8">
-                    <AvatarFallback><Bot size={18} /></AvatarFallback>
-                  </Avatar>
-                  <div className="bg-muted rounded-lg px-4 py-3">
-                    <Loader2 className="h-5 w-5 animate-spin" />
-                  </div>
-                </div>
-              )}
+               <PendingMessage />
             </div>
           </ScrollArea>
           <SheetFooter>
-            <form ref={formRef} onSubmit={handleSubmit} className="flex w-full items-center space-x-2">
+            <form id={formId} key={formKey} action={handleFormAction} className="flex w-full items-center space-x-2">
+              <input type="hidden" name="history" value={JSON.stringify(messages)} />
               <Input
                 name="question"
                 type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
                 placeholder="Escribe tu pregunta..."
-                disabled={isPending}
                 autoComplete="off"
+                disabled={false} // Will be controlled by SubmitButton's pending state
               />
-              <Button type="submit" size="icon" disabled={isPending || !input.trim()}>
-                {isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
-                <span className="sr-only">Enviar</span>
-              </Button>
+              <SubmitButton />
             </form>
           </SheetFooter>
         </SheetContent>
@@ -172,5 +150,34 @@ const PortfolioChatbot = () => {
     </>
   );
 };
+
+
+function SubmitButton() {
+    const { pending } = useFormStatus();
+
+    return (
+        <Button type="submit" size="icon" disabled={pending}>
+            {pending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+            <span className="sr-only">Enviar</span>
+        </Button>
+    )
+}
+
+function PendingMessage() {
+    const { pending } = useFormStatus();
+
+    if (!pending) return null;
+    
+    return (
+        <div className="flex items-start gap-3 justify-start">
+            <Avatar className="h-8 w-8">
+                <AvatarFallback><Bot size={18} /></AvatarFallback>
+            </Avatar>
+            <div className="bg-muted rounded-lg px-4 py-3">
+                <Loader2 className="h-5 w-5 animate-spin" />
+            </div>
+        </div>
+    )
+}
 
 export default PortfolioChatbot;
