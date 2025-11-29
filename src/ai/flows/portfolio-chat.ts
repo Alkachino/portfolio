@@ -10,12 +10,6 @@
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
 import { portfolioData } from '@/lib/data';
-import Handlebars from 'handlebars';
-
-// Registrar el 'helper' de forma global para que esté disponible al definir el prompt.
-Handlebars.registerHelper('eq', function (a, b) {
-  return a === b;
-});
 
 const ChatMessageSchema = z.object({
   role: z.enum(['user', 'model']),
@@ -98,9 +92,10 @@ const prompt = ai.definePrompt({
 ${portfolioContext}`,
   prompt: `Historial de la conversación:
 {{#each history}}
-{{#if (eq this.role "user")}}
+{{#if (this.role == 'user')}}
 Usuario: {{{this.content}}}
-{{else}}
+{{/if}}
+{{#if (this.role == 'model')}}
 Asistente: {{{this.content}}}
 {{/if}}
 {{/each}}
