@@ -37,6 +37,8 @@ const PortfolioChatbot = () => {
   const [state, formAction] = useActionState(portfolioChatAction, initialState);
   const [isPending, setIsPending] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+
 
   useEffect(() => {
     if (state) {
@@ -62,18 +64,15 @@ const PortfolioChatbot = () => {
     e.preventDefault();
     if (!input.trim() || isPending) return;
 
-    const userMessage: Message = { role: "user", content: input };
-    setMessages((prev) => [...prev, userMessage]);
-    
-    const formData = new FormData();
-    formData.append('question', input);
-    messages.forEach((msg, index) => {
-        formData.append(`history[${index}][role]`, msg.role);
-        formData.append(`history[${index}][content]`, msg.content);
-    });
+    const currentMessages = [...messages, { role: 'user', content: input }];
+    setMessages(currentMessages);
 
+    const formData = new FormData(formRef.current!);
+    // Manually set history since it's state, not a form input
+    formData.set('history', JSON.stringify(messages));
+    
     setIsPending(true);
-    formAction({ history: messages, question: input });
+    formAction(formData);
     setInput("");
   };
 
@@ -152,8 +151,9 @@ const PortfolioChatbot = () => {
             </div>
           </ScrollArea>
           <SheetFooter>
-            <form onSubmit={handleSubmit} className="flex w-full items-center space-x-2">
+            <form ref={formRef} onSubmit={handleSubmit} className="flex w-full items-center space-x-2">
               <Input
+                name="question"
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}

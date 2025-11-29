@@ -20,9 +20,20 @@ export async function improveContentAction(input: ImproveContentWithAIInput) {
   }
 }
 
-export async function portfolioChatAction(input: PortfolioChatInput) {
+export async function portfolioChatAction(input: PortfolioChatInput | FormData) {
+  let chatInput: PortfolioChatInput;
+
+  if (input instanceof FormData) {
+    const question = input.get('question') as string;
+    const historyString = input.get('history') as string | null;
+    const history = historyString ? JSON.parse(historyString) : [];
+    chatInput = { question, history };
+  } else {
+    chatInput = input;
+  }
+
   try {
-    const result = await portfolioChat(input);
+    const result = await portfolioChat(chatInput);
     if (!result || !result.answer) {
       return { success: false, error: 'AI failed to generate a response.' };
     }
