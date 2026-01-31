@@ -32,6 +32,25 @@ document.querySelectorAll('section').forEach(section => {
     observer.observe(section);
 });
 
+// Theme Toggle Functionality
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+// Check for saved theme preference or default to dark mode
+const currentTheme = localStorage.getItem('theme') || 'dark';
+if (currentTheme === 'light') {
+    body.classList.add('light-mode');
+}
+
+// Toggle theme on button click
+themeToggle.addEventListener('click', () => {
+    body.classList.toggle('light-mode');
+
+    // Save preference
+    const theme = body.classList.contains('light-mode') ? 'light' : 'dark';
+    localStorage.setItem('theme', theme);
+});
+
 // Remove loading class after page load
 window.addEventListener('load', () => {
     document.body.classList.remove('loading');

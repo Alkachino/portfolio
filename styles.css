@@ -2,18 +2,18 @@
 
 :root {
   /* Dark Theme Colors */
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --bg-tertiary: #334155;
+  --bg-primary: #020617;
+  --bg-secondary: #0F172A;
+  --bg-tertiary: #1e293b;
 
-  /* Teal Accent Colors */
-  --accent-primary: #14b8a6;
-  --accent-hover: #0d9488;
-  --accent-dark: #0f766e;
+  /* Accent Colors */
+  --accent-primary: #38BDF8;
+  --accent-hover: #0ea5e9;
+  --accent-dark: #0284C7;
 
   /* Text Colors */
-  --text-primary: #ffffff;
-  --text-secondary: #cbd5e1;
+  --text-primary: #F1F5F9;
+  --text-secondary: #CBD5E1;
   --text-tertiary: #94a3b8;
 
   /* Spacing */
@@ -40,7 +40,74 @@
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  --shadow-glow: 0 0 20px rgba(20, 184, 166, 0.3);
+  --shadow-glow: 0 0 20px rgba(56, 189, 248, 0.3);
+}
+
+/* Light Theme */
+body.light-mode {
+  --bg-primary: #F1F5F9;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #e2e8f0;
+
+  --accent-primary: #0284C7;
+  --accent-hover: #0369a1;
+  --accent-dark: #075985;
+
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-tertiary: #64748b;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 20px rgba(2, 132, 199, 0.3);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-full);
+  background: var(--bg-secondary);
+  border: 2px solid var(--accent-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-normal);
+  z-index: 1000;
+  box-shadow: var(--shadow-md);
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-glow);
+}
+
+.theme-toggle svg {
+  width: 24px;
+  height: 24px;
+  color: var(--accent-primary);
+  transition: all var(--transition-normal);
+}
+
+.theme-toggle .sun-icon {
+  display: none;
+}
+
+.theme-toggle .moon-icon {
+  display: block;
+}
+
+body.light-mode .theme-toggle .sun-icon {
+  display: block;
+}
+
+body.light-mode .theme-toggle .moon-icon {
+  display: none;
 }
 
 * {
