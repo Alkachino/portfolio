@@ -338,6 +338,26 @@ section.visible {
   font-size: 1.2rem;
 }
 
+.skill-with-icon {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-xs) 0;
+  padding-left: 1.5rem;
+}
+
+.tech-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.skill-with-icon span {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+}
+
+
 /* Certifications Section */
 .certifications-list {
   max-width: 900px;
