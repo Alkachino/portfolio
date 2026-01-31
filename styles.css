@@ -351,11 +351,26 @@ section.visible {
   margin-bottom: var(--spacing-md);
   border-left: 4px solid var(--accent-primary);
   transition: all var(--transition-normal);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
 }
 
 .certification-item:hover {
   transform: translateX(10px);
   box-shadow: 0 5px 20px rgba(20, 184, 166, 0.15);
+}
+
+.cert-logo {
+  height: 60px;
+  width: auto;
+  max-width: 100px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.cert-content {
+  flex: 1;
 }
 
 .certification-item h4 {
@@ -578,6 +593,12 @@ section.visible {
 
   .skills-grid {
     grid-template-columns: 1fr;
+  }
+
+  .cert-logo {
+    height: 50px;
+    width: auto;
+    max-width: 80px;
   }
 
   .social-links {
